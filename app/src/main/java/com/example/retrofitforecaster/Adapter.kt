@@ -12,74 +12,60 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ContactItemDiffCallback : DiffUtil.ItemCallback<ListItem>() {
     override fun areItemsTheSame(oldItem: ListItem, newItem: ListItem) = oldItem == newItem
-
     override fun areContentsTheSame(oldItem: ListItem, newItem: ListItem) = oldItem == newItem
-
 }
 
 class ViewHolderCold(view: View) : RecyclerView.ViewHolder(view) {
-    val datetime: TextView = view.findViewById(R.id.datetime_text)
-    val temperature: TextView = view.findViewById(R.id.temperature_text)
-    val description: TextView = view.findViewById(R.id.desc_text)
+    private val datetime: TextView = view.findViewById(R.id.datetime_text)
+    private val temperature: TextView = view.findViewById(R.id.temperature_text)
+    private val description: TextView = view.findViewById(R.id.desc_text)
 
-    fun bindTo(weather: ListItem, position: Int) {
-        if (temperature != null) {
-            temperature.text = weather.main.temp.toString()
-        }
-        if (datetime != null) {
-            datetime.text = weather.dt_txt
-        }
-        if (description != null) {
-            description.text = weather.weather?.get(0)?.description
-        }
+    fun bindTo(weather: ListItem) {
+        temperature.text = weather.main.temp.toString()
+        datetime.text = weather.dt_txt
+        description.text = weather.weather?.get(0)?.description
     }
 }
 
 class ViewHolderHot(view: View) : RecyclerView.ViewHolder(view) {
-    val datetime: TextView = view.findViewById(R.id.datetime_text)
-    val temperature: TextView = view.findViewById(R.id.temperature_text)
-    val description: TextView = view.findViewById(R.id.desc_text)
+    private val datetime: TextView = view.findViewById(R.id.datetime_text)
+    private val temperature: TextView = view.findViewById(R.id.temperature_text)
+    private val description: TextView = view.findViewById(R.id.desc_text)
 
-
-    fun bindTo(weather: ListItem, position: Int) {
-        if (temperature != null) {
-            temperature.text = weather.main.temp.toString()
-        }
-        if (datetime != null) {
-            datetime.text = weather.dt_txt
-        }
-        if (description != null) {
-            description.text = weather.weather?.get(0)?.description
-        }
+    fun bindTo(weather: ListItem) {
+        temperature.text = weather.main.temp.toString()
+        datetime.text = weather.dt_txt
+        description.text = weather.weather?.get(0)?.description
     }
 }
 
 class Adapter : ListAdapter<ListItem, RecyclerView.ViewHolder>(ContactItemDiffCallback()) {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        if (viewType == 0) {
+        return if (viewType == 0) {
             val view =
-                LayoutInflater.from(parent.context).inflate(R.layout.rview_item, parent, false)
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.rview_item, parent, false)
             view.setBackgroundColor(Color.rgb(240, 128, 128))
-            return ViewHolderHot(view)
+            ViewHolderHot(view)
         }
         else {
             val view =
-                LayoutInflater.from(parent.context).inflate(R.layout.rview_item, parent, false)
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.rview_item, parent, false)
             view.setBackgroundColor(Color.rgb(135, 206, 235))
-            return ViewHolderCold(view)
+            ViewHolderCold(view)
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val data = currentList[position]
         if (data.main.temp > 0) {
-            val viewholderhot: ViewHolderHot = holder as ViewHolderHot
-            viewholderhot.bindTo(data, position)
+            val viewHolderHot: ViewHolderHot = holder as ViewHolderHot
+            viewHolderHot.bindTo(data)
         }
         else {
-            val viewholdercold: ViewHolderCold = holder as ViewHolderCold
-            viewholdercold.bindTo(data, position)
+            val viewHolderCold: ViewHolderCold = holder as ViewHolderCold
+            viewHolderCold.bindTo(data)
         }
     }
 

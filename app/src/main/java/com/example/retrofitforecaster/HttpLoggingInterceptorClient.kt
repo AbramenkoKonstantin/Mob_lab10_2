@@ -5,6 +5,12 @@ import okhttp3.logging.HttpLoggingInterceptor
 
 object HttpLoggingInterceptorClient {
     val client: OkHttpClient
-        get() = OkHttpClient.Builder().addInterceptor(
-            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)).build()
+        get() {
+            val interceptor = HttpLoggingInterceptor()
+            interceptor.level = HttpLoggingInterceptor.Level.BODY
+            interceptor.redactHeader("Authorization")
+            interceptor.redactHeader("Cookie")
+            return OkHttpClient.Builder().addInterceptor(interceptor).build()
+
+        }
 }

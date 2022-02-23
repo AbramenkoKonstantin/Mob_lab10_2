@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Mob_lab8-master/app/src/main/res/layout/activity_main.xml" value="0.371875" />
         <entry key="..\:/Mob_lab8-master/app/src/main/res/layout/fragment_content.xml" value="0.17882472137791286" />
+        <entry key="..\:/Mob_lab8-master/app/src/main/res/layout/rview_item.xml" value="0.371875" />
+        <entry key="..\:/Mob_lab8.2/app/src/main/res/layout/activity_main.xml" value="0.371875" />
         <entry key="..\:/Users/kosta/Downloads/Lab8RMP/app/src/main/res/layout/activity_main.xml" value="0.26766304347826086" />
         <entry key="..\:/Users/kosta/Downloads/Rmp8-master/app/src/main/res/layout/rview_item.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/thealexis/AndroidStudioProjects/RetrofitForecaster/app/src/main/res/layout/activity_main.xml" value="0.33" />

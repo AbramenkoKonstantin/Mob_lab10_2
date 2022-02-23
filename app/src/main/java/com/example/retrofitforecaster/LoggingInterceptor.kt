@@ -4,9 +4,7 @@ import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.internal.http2.Http2Reader.Companion.logger
-import okhttp3.logging.HttpLoggingInterceptor
 import java.io.IOException
-
 
 class LoggingInterceptor : Interceptor {
     @Throws(IOException::class)
